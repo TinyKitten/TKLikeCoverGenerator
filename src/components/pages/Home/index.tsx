@@ -1,7 +1,8 @@
+import html2canvas from 'html2canvas';
 import moment from 'moment';
 import * as React from 'react';
-import SampleBg from '../../../assets/sample_bg.png';
 
+import SampleBg from '../../../assets/sample_bg.png';
 import Form from '../../organisms/Form';
 import SlideCanvas from '../../organisms/SlideCanvas';
 
@@ -57,6 +58,26 @@ const HomePage = () => {
     reader.readAsDataURL(files[0]);
   };
 
+  const handleCapture = () => {
+    const canvasElement = document.querySelector('#canvas') as HTMLElement;
+    if (!canvasElement) {
+      return;
+    }
+    canvasElement.style.fontFeatureSettings = '"liga" 0';
+    const options: Html2Canvas.Html2CanvasOptions = {
+      letterRendering: true
+    };
+    html2canvas(canvasElement, options).then(canvas => {
+      const a = document.createElement('a');
+      a.href = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+      a.download = 'cover.jpg';
+      a.click();
+      canvasElement.style.fontFeatureSettings = 'initial';
+    });
+  };
+
   return (
     <div>
       <SlideCanvas
@@ -76,6 +97,7 @@ const HomePage = () => {
         onPlaceChange={handlePlaceChange}
         onAuthorChange={handleAuthorChange}
         onImageChange={handleImageChange}
+        onCaptureClick={handleCapture}
       />
     </div>
   );

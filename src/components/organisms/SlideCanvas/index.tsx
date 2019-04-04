@@ -20,7 +20,7 @@ const SlideCanvas = (props: IProps) => {
   };
 
   return (
-    <section style={rootStyle} className={styles.slide}>
+    <section id="canvas" style={rootStyle} className={styles.slide}>
       <div className={styles.slide__inner}>
         <main className={styles.slide__titleBox}>
           <h1 className={styles.slide__titleJa}>{title}</h1>
