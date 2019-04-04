@@ -19,7 +19,7 @@ const SlideCanvas = (props: IProps) => {
   const height = (3 / 4) * width;
   const imageElem = document.createElement('img');
   imageElem.src = props.image;
-  const FONT_FAMILY = 'acumin-pro, source-han-sans-japanese, sans-serif';
+  const FONT_FAMILY = 'Roboto, source-han-sans-japanese, sans-serif';
 
   React.useEffect(() => {
     if (!canvasRef) {
@@ -67,7 +67,7 @@ const SlideCanvas = (props: IProps) => {
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     // タイトル
     ctx.fillStyle = 'white';
-    ctx.font = `bold ${canvasWidth / 18}px '${FONT_FAMILY}'`;
+    ctx.font = `bold ${canvasWidth / 18}px ${FONT_FAMILY}`;
     ctx.fillText(props.title, canvasWidth / 24, canvasHeight / 2);
     // タイトル（英語）
     ctx.font = `100 ${canvasWidth / 44}px ${FONT_FAMILY}`;

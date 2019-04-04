@@ -4,6 +4,7 @@ import * as React from 'react';
 import SampleBg from '../../../assets/sample_bg.png';
 import Form from '../../organisms/Form';
 import SlideCanvas from '../../organisms/SlideCanvas';
+import styles from './styles.module.scss';
 
 const HomePage = () => {
   const [title, setTitle] = React.useState('Webデザイン概論');
@@ -64,12 +65,12 @@ const HomePage = () => {
     if (!canvas) {
       return;
     }
-    const a = document.createElement('a');
-    a.href = canvas
-      .toDataURL('image/png')
-      .replace('image/png', 'image/octet-stream');
-    a.download = 'cover.jpg';
-    a.click();
+    const a = document.getElementById('hiddenLink') as HTMLAnchorElement | null;
+    if (a) {
+      a.href = canvas.toDataURL();
+      a.download = 'cover.jpg';
+      a.click();
+    }
   };
 
   return (
@@ -93,6 +94,7 @@ const HomePage = () => {
         onImageChange={handleImageChange}
         onCaptureClick={handleCapture}
       />
+      <a className={styles.hiddenLink} id="hiddenLink" download="canvas.png" />
     </div>
   );
 };
