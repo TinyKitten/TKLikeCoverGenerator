@@ -3,7 +3,9 @@ import styles from './styles.module.scss';
 
 const Footer = () => (
   <footer className={styles.footer}>
-    <p>The TinyKitten Product</p>
+    <a href="https://tinykitten.me" target="_blank" rel="noreferrer noopener">
+      The TinyKitten Product
+    </a>
   </footer>
 );
 

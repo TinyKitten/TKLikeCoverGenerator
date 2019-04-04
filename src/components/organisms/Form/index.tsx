@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isMobile } from 'react-device-detect';
 
 import styles from './styles.module.scss';
 
@@ -15,13 +16,21 @@ interface IProps {
   ) => void;
 }
 
+const width = isMobile ? window.innerWidth : window.innerWidth / 2;
+const sectionStyle: React.CSSProperties = {
+  margin: '0 auto',
+  width
+};
+
 const Form = (props: IProps) => (
-  <section>
-    <div className={styles.wrapper}>
-      <button className={styles.captureBtn} onClick={props.onCaptureClick}>撮影</button>
+  <section style={sectionStyle}>
+    <div className={styles.btnWrapper}>
+      <button className={styles.captureBtn} onClick={props.onCaptureClick}>
+        ダウンロード
+      </button>
     </div>
-    <form className={styles.wrapper}>
-      <div>
+    <form>
+      <div className={styles.box}>
         <label>背景画像:</label>
         <input
           type="file"
@@ -30,15 +39,15 @@ const Form = (props: IProps) => (
           onChange={props.onImageChange}
         />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>タイトル:</label>
         <input type="text" onChange={props.onTitleChange} name="title" />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>タイトル(英語):</label>
         <input type="text" onChange={props.onTitleEnChange} name="title_en" />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>イベント名:</label>
         <input
           type="text"
@@ -46,15 +55,15 @@ const Form = (props: IProps) => (
           name="event_name"
         />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>日付:</label>
         <input type="date" onChange={props.onDateChange} name="date" />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>開催場所:</label>
         <input type="text" onChange={props.onPlaceChange} name="place" />
       </div>
-      <div>
+      <div className={styles.box}>
         <label>名前:</label>
         <input type="text" onChange={props.onAuthorChange} name="place" />
       </div>

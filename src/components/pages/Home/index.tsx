@@ -1,4 +1,3 @@
-import html2canvas from 'html2canvas';
 import moment from 'moment';
 import * as React from 'react';
 
@@ -8,7 +7,7 @@ import SlideCanvas from '../../organisms/SlideCanvas';
 
 const HomePage = () => {
   const [title, setTitle] = React.useState('Webデザイン概論');
-  const [titleEn, setTitleEn] = React.useState('Introduction of Web design');
+  const [titleEn, setTitleEn] = React.useState('Introduction of Web Design');
   const [eventName, setEventName] = React.useState('MakotiaCon');
   const [date, setDate] = React.useState(moment());
   const [place, setPlace] = React.useState('Maebashi Terresa, Maebashi, Gunma');
@@ -47,7 +46,7 @@ const HomePage = () => {
       return;
     }
     const reader = new FileReader();
-    reader.onload = (_theFile => (e: ProgressEvent) => {
+    reader.onload = (_ => (e: ProgressEvent) => {
       const target = e.target as EventTarget & { result: string };
       if (!target) {
         return;
@@ -59,23 +58,18 @@ const HomePage = () => {
   };
 
   const handleCapture = () => {
-    const canvasElement = document.querySelector('#canvas') as HTMLElement;
-    if (!canvasElement) {
+    const canvas = document.getElementById(
+      'canvas'
+    ) as HTMLCanvasElement | null;
+    if (!canvas) {
       return;
     }
-    canvasElement.style.fontFeatureSettings = '"liga" 0';
-    const options: Html2Canvas.Html2CanvasOptions = {
-      letterRendering: true
-    };
-    html2canvas(canvasElement, options).then(canvas => {
-      const a = document.createElement('a');
-      a.href = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
-      a.download = 'cover.jpg';
-      a.click();
-      canvasElement.style.fontFeatureSettings = 'initial';
-    });
+    const a = document.createElement('a');
+    a.href = canvas
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream');
+    a.download = 'cover.jpg';
+    a.click();
   };
 
   return (
