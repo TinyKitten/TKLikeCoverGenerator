@@ -11,7 +11,7 @@ const HomePage = () => {
   const [titleEn, setTitleEn] = React.useState('Introduction of Web Design');
   const [eventName, setEventName] = React.useState('MakotiaCon');
   const [date, setDate] = React.useState(moment());
-  const [place, setPlace] = React.useState('Maebashi Terresa, Maebashi, Gunma');
+  const [place, setPlace] = React.useState('Casuarise Sugamo, Toshima, Tokyo');
   const [author, setAuthor] = React.useState('TinyKitten');
   const [image, setImage] = React.useState(SampleBg);
 
