@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const SlideCanvas = (props: IProps) => {
-  const [canvasRef, setCanvasRef] = React.useState();
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   const width = isMobile ? window.innerWidth : window.innerWidth / 2;
   const height = (3 / 4) * width;
@@ -22,10 +22,7 @@ const SlideCanvas = (props: IProps) => {
   const FONT_FAMILY = 'Roboto, source-han-sans-japanese, sans-serif';
 
   React.useEffect(() => {
-    if (!canvasRef) {
-      return;
-    }
-    const ctx = canvasRef.getContext('2d') as CanvasRenderingContext2D;
+    const ctx = canvasRef.current?.getContext('2d') as CanvasRenderingContext2D;
     imageElem.onload = () => onImageLoaded(ctx);
   });
 
@@ -109,7 +106,7 @@ const SlideCanvas = (props: IProps) => {
   return (
     <canvas
       id="canvas"
-      ref={ref => setCanvasRef(ref)}
+      ref={canvasRef}
       width={canvasWidth} // Retina
       height={canvasHeight} // Retina
       style={canvasStyle}

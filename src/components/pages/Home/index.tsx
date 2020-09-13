@@ -94,6 +94,7 @@ const HomePage = () => {
         onImageChange={handleImageChange}
         onCaptureClick={handleCapture}
       />
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
       <a className={styles.hiddenLink} id="hiddenLink" download="canvas.png" />
     </div>
   );
